@@ -1,28 +1,30 @@
 # BFS algorithm in Python
 
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
 
-import collections
+visited = [] # List for visited nodes.
+queue = []     #Initialize a queue
 
-# BFS algorithm
-def bfs(graph, root):
+def bfs(visited, graph, node): #function for BFS
+  visited.append(node)
+  queue.append(node)
 
-    visited, queue = set(), collections.deque([root])
-    visited.add(root)
+  while queue:          # Creating loop to visit each node
+    m = queue.pop(0) 
+    print (m, end = " ") 
 
-    while queue:
-
-        # Dequeue a vertex from queue
-        vertex = queue.popleft()
-        print(str(vertex) + " ", end="")
-
-        # If not visited, mark it as visited, and
-        # enqueue it
-        for neighbour in graph[vertex]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                queue.append(neighbour)
+    for neighbour in graph[m]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
 
 
-graph = {0: [1, 2], 1: [2], 2: [3], 3: [1, 2]}
-print("Following is Breadth First Traversal: ")
-bfs(graph, 0)
+print("Following is the Breadth-First Search")
+bfs(visited, graph, '5')
