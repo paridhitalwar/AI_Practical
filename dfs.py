@@ -1,24 +1,23 @@
 # DFS algorithm in Python
 
-import collections
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
 
-# DFS algorithm
-def dfs(graph, start, visited=None):
-    if visited is None:
-        visited = set()
-    visited.add(start)
+visited = set() # Set to keep track of visited nodes of graph.
 
-    print(start)
-
-    for next in graph[start] - visited:
-        dfs(graph, next, visited)
-    return visited
+def dfs(visited, graph, node):  #function for dfs 
+    if node not in visited:
+        print (node)
+        visited.add(node)
+        for neighbour in graph[node]:
+            dfs(visited, graph, neighbour)
 
 
-graph = {'0': set(['1', '2']),
-         '1': set(['0', '3', '4']),
-         '2': set(['0']),
-         '3': set(['1']),
-         '4': set(['2', '3'])}
-print("Following is DFS: ")
-dfs(graph, '0')
+print("Following is the Depth-First Search")
+dfs(visited, graph, '5')
