@@ -1,4 +1,8 @@
-fuzzywuzzy import process
+# if this doesn't work then probabaly fuzzywuzzy is not installed so for that do this:
+# pip install fuzzywuzzy
+
+
+from fuzzywuzzy import process
 str2Match = "apple inc"
 strOptions = ["Apple Inc.","apple park","apple incorporated","iphone"]
 Ratios = process.extract(str2Match,strOptions)
